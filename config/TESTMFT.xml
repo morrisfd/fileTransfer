@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<all xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<!--
+********************************************************************************
+*	date          Eng      SCR          Description
+*	2019-10-24    thisuser  SYSSAT-448   Created for testing
+********************************************************************************
+-->
+
+<!-- SCR #	 ENG  	 DATE        DESCRIPTION      -->
+<!-- SYSSAT-448  thisuser 2019-09-09  DEMS - Remove FILE_TRANSFER dependancy. 
+				     Created new Managed File Transfer (MFT) XML -->
+
+        <!-- SSJ GENERATOR FILES TO BE TRANSFERRED -->
+
+	<filetransfer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="ssj_transfer">
+		
+	<!-- SSJ EDR TO OVAL -->
+	
+		<localtransaction destHome="thiscurrtestdir/data/dmsp/input/" retryInterval="30" maxRetries="3">
+			<transfer>
+				<source delete="false">thiscurrtestdir/data/dmsp/output/*SSJ*.EDR</source>
+				<destination>*</destination>
+			</transfer>
+		</localtransaction>	
+		
+        <!-- SSJ EDR AND SDR TO ARCHIVE -->
+
+                <localtransaction destHome="thiscurrtestdir/data/dmsp/ssies/archive/ssj/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                <source delete="true">thiscurrtestdir/data/dmsp/output/*SSJ*</source>
+                                <destination>*</destination>
+                        </transfer>
+                </localtransaction>
+
+	</filetransfer>
+	
+        <!-- FDM TEST01 FILES TO BE TRANSFERRED -->
+
+	<filetransfer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="fdm_transfer">
+		
+	<!-- FDM EDR TO OVAL -->
+	
+		<localtransaction destHome="thiscurrtestdir/data/dmsp/input/" retryInterval="30" maxRetries="3">
+			<transfer>
+				<source delete="false">thiscurrtestdir/data/dmsp/output/*SSJ*.EDR</source>
+				<destination>*</destination>
+			</transfer>
+		</localtransaction>	
+		
+        <!-- FDM EDR AND SDR TO ARCHIVE -->
+
+                <localtransaction destHome="thiscurrtestdir/data/dmsp/fdms/archive/fdm/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                <source delete="true">thiscurrtestdir/data/dmsp/output/*SSJ*</source>
+                                <destination>*</destination>
+                        </transfer>
+                </localtransaction>
+
+	</filetransfer>
+
+	<!-- OVAL FILES TO BE TRANSFERRED -->
+
+	<filetransfer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="oval_transfer">
+	
+        <!-- OVAL SINGLE TO ARCHIVE -->
+
+                <localtransaction destHome="thiscurrtestdir/data/dmsp/oval/archive/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                <source delete="true">thiscurrtestdir/data/dmsp/output/Oval_Single.txt</source>
+                                <destination>*</destination>
+                        </transfer>
+                </localtransaction>
+
+        <!-- OVAL DAILY TO ARCHIVE -->
+
+                <localtransaction destHome="thiscurrtestdir/data/dmsp/oval/archive/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                <source delete="true">thiscurrtestdir/data/dmsp/output/Oval_Daily.txt</source>
+                                <destination>*</destination>
+                        </transfer>
+                </localtransaction>
+
+	</filetransfer>	
+	
+        <!-- SSIES GENERATOR FILES TO BE TRANSFERRED -->
+
+	<filetransfer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="ssies_transfer">
+	
+	<!-- SSIES EDR TO ARCHIVE -->
+	
+		<localtransaction destHome="thiscurrtestdir/data/dmsp/ssies/archive/ies/" retryInterval="30" maxRetries="3">
+			<transfer>
+				<source delete="true">thiscurrtestdir/data/dmsp/output/*SIES*.EDR</source>
+				<destination>.TMP*</destination>
+				<finalname>*</finalname>
+			</transfer>
+		</localtransaction>
+			
+	</filetransfer>
+	
+	<filetransfer id="faker">
+		<localtransaction maxRetries="3" retryInterval="15" destHome="thiscurrtestdir/data/fakedir/input/">
+			<transfer type="binary">
+				<source delete="false">thiscurrtestdir/data/fakedir/output/*.AIRPOLICING_SPWXSUM.*.GIF</source>
+				<destination>.TMP*</destination>
+				<finalname>PS.AFWA_SC.U_DI.A_DC.IMAGERY_DS.SPACE-OBS_PA.SUMMARY_DF.GIF</finalname>
+			</transfer>
+		</localtransaction>
+
+		<localtransaction maxRetries="3" retryInterval="15" destHome="thiscurrtestdir/data/fakedir/faker/Product/">
+			<transfer type="binary">
+				<source delete="false">thiscurrtestdir/data/fakedir/output/*.AIRPOLICING_SPWXSUM.*.GIF</source>
+				<destination>.TMP*</destination>
+				<finalname>PS.AFWA_SC.U_DI.A_DC.IMAGERY_DS.SPACE-OBS_PA.SUMMARY_DF.GIF</finalname>
+			</transfer>
+		</localtransaction>
+
+<!--
+		<localtransaction maxRetries="3" retryInterval="15" destHome="/dev/null">
+			<transfer type="binary">
+				<source delete="true">thiscurrtestdir/data/fakedir/output/*.AIRPOLICING_SPWXSUM.*.GIF</source>
+				<destination>.TMP*</destination>
+				<finalname>PS.AFWA_SC.U_DI.A_DC.IMAGERY_DS.SPACE-OBS_PA.SUMMARY_DF.GIF</finalname>
+			</transfer>
+		</localtransaction>
+-->
+	</filetransfer>
+
+
+        <!-- SSM GENERATOR FILES TO BE TRANSFERRED -->
+
+	<filetransfer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="ssm_transfer">
+	
+	<!-- SSM MFR TO ARCHIVE -->
+	
+		<localtransaction destHome="thiscurrtestdir/data/dmsp/ssies/archive/ssm/" retryInterval="30" maxRetries="3">
+			<transfer>
+				<source delete="true">thiscurrtestdir/data/dmsp/output/*.MFR</source>
+				<destination>*</destination>
+			</transfer>
+		</localtransaction>
+			
+	</filetransfer>
+
+        <!-- SSUSI GENERATOR FILES TO BE TRANSFERRED -->
+
+        <filetransfer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="ssusi_transfer">
+
+        <!-- SSUSI TO ARCHIVE -->
+
+                <localtransaction destHome="thiscurrtestdir/data/dmsp/ssusi/archive/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                <source delete="true">thiscurrtestdir/data/dmsp/output/PS*SSUSI*</source>
+                                <destination>*</destination>
+                        </transfer>
+                </localtransaction>
+		
+        </filetransfer>
+	
+        <!-- SSULI GENERATOR FILES TO BE TRANSFERRED -->
+
+	<filetransfer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="ssuli_transfer">
+	
+	<!-- SSULI SDR AND KMZ TO ARCHIVE -->
+	
+		<localtransaction destHome="thiscurrtestdir/data/dmsp/ssuli/archive/" retryInterval="30" maxRetries="3">
+			<transfer>
+				<source delete="true">thiscurrtestdir/data/dmsp/output/PS*.NRL*</source>
+				<destination>*</destination>
+			</transfer>
+		</localtransaction>
+
+	</filetransfer>
+	
+        <!-- RSDR GENERATOR FILES TO BE TRANSFERRED -->
+
+        <filetransfer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="rsdr_transfer">
+
+        <!-- RSDR TO SSJ -->
+
+                <localtransaction destHome="thiscurrtestdir/data/dmsp/input/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                <source delete="true">thiscurrtestdir/data/dmsp/output/f*_j5_*.dat</source>
+                                <destination>*</destination>
+                        </transfer>
+                </localtransaction>
+		
+        <!-- RSDR TO SSM -->
+
+                <localtransaction destHome="thiscurrtestdir/data/dmsp/input/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                <source delete="true">thiscurrtestdir/data/dmsp/output/f1*_mm_*.dat</source>
+                                <destination>*</destination>
+                        </transfer>
+                </localtransaction>
+
+        <!-- RSDR TO SSIES -->
+
+                <localtransaction destHome="thiscurrtestdir/data/dmsp/input/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                <source delete="true">thiscurrtestdir/data/dmsp/output/f*_i2_*.dat</source>
+                                <destination>*</destination>
+                        </transfer>
+                </localtransaction>
+		
+                <localtransaction destHome="thiscurrtestdir/data/dmsp/input/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                <source delete="true">thiscurrtestdir/data/dmsp/output/f*_i3_*.dat</source>
+                                <destination>*</destination>
+                        </transfer>
+                </localtransaction>
+		
+        <!-- RSDR TO SSULI -->
+
+               <localtransaction destHome="thiscurrtestdir/data/dmsp/input/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                <source delete="true">thiscurrtestdir/data/dmsp/output/f18*_li_*.dat</source>
+                                <destination>*</destination>
+                        </transfer>
+               </localtransaction>
+
+        <!-- RSDR TO SSUSI -->
+
+               <localtransaction destHome="thiscurrtestdir/data/dmsp/input/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                <source delete="true">thiscurrtestdir/data/dmsp/output/f1*_si_*.dat</source>
+                                <destination>*</destination>
+                        </transfer>
+               </localtransaction>
+
+        <!-- RSDR TO SSMIS -->
+
+                <localtransaction destHome="thiscurrtestdir/data/dmsp/input/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                <source delete="true">thiscurrtestdir/data/dmsp/output/f*_ms_*.dat</source>
+                                <destination>*</destination>
+                        </transfer>
+                </localtransaction>
+
+        <!-- RSDR TO ARCHIVE -->
+
+                <localtransaction destHome="thiscurrtestdir/data/dmsp/rsdr/archive/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                 <source delete="true">thiscurrtestdir/data/dmsp/output/f*.dat*</source>
+                                 <destination>*</destination>
+                        </transfer>
+                </localtransaction>
+
+        <!-- SPP RSDR TO ARCHIVE -->
+
+                <localtransaction destHome="thiscurrtestdir/data/dmsp/rsdr/archive/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                <source delete="true">thiscurrtestdir/data/dmsp/output/ssmi*ckgwc.rdr*</source>
+                                <destination>*</destination>
+                        </transfer>
+                </localtransaction>
+		
+        </filetransfer>
+
+        <!-- SSMIS GENERATOR FILES TO BE TRANSFERRED -->
+
+        <filetransfer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="ssmis_transfer">
+
+        <!-- SSMIS TO ARCHIVE -->
+
+                <localtransaction destHome="thiscurrtestdir/data/dmsp/ssmis/archive/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                <source delete="true">thiscurrtestdir/data/dmsp/output/F*DAT</source>
+                                <destination>*</destination>
+                        </transfer>
+                </localtransaction>
+
+        </filetransfer>
+
+        <!-- DYN PARAMS GENERATOR FILES TO BE TRANSFERRED -->
+
+        <filetransfer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="dynparams_transfer">
+
+        <!-- DYNPARAMS TO ARCHIVE -->
+
+                <localtransaction destHome="thiscurrtestdir/data/dmsp/dynparams/archive/" retryInterval="30" maxRetries="3">
+                        <transfer>
+                                <source delete="true">thiscurrtestdir/data/dmsp/output/dyn*</source>
+                                <destination>*</destination>
+                        </transfer>
+                </localtransaction>
+
+        </filetransfer>
+	
+</all>

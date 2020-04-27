@@ -1,0 +1,7 @@
+.coverage
+bin
+data
+logs
+*.pyc
+*.swp
+git.notes
